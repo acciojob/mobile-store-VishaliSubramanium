@@ -32,7 +32,7 @@ const App = () => {
     ]);
   };
 
-  // Edit Product
+  // Update Product
   const updateProduct = (updatedProduct) => {
     setProducts((prevProducts) =>
       prevProducts.map((p) =>
