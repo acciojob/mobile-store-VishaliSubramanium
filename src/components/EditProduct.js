@@ -1,15 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 const EditProduct = ({ products, onUpdateProduct }) => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const product = products.find((p) => p.id === id);
+  const product = products.find((p) => String(p.id) === String(id));
 
-  const [name, setName] = useState(product ? product.name : "");
-  const [price, setPrice] = useState(product ? product.price : "");
-  const [description, setDescription] = useState(product ? product.description : "");
-  const [image, setImage] = useState(product ? product.image : "");
+  const [name, setName] = useState("");
+  const [price, setPrice] = useState("");
+  const [description, setDescription] = useState("");
+  const [image, setImage] = useState("");
+
+  useEffect(() => {
+    if (product) {
+      setName(product.name);
+      setPrice(product.price);
+      setDescription(product.description);
+      setImage(product.image);
+    }
+  }, [product]);
 
   if (!product) {
     return <div className="container">Product not found</div>;
@@ -17,13 +26,16 @@ const EditProduct = ({ products, onUpdateProduct }) => {
 
   const handleSave = (e) => {
     e.preventDefault();
+    const updatedPrice = typeof price === "number" ? price : parseFloat(price);
+
     onUpdateProduct({
       id: product.id,
       name,
-      price: parseFloat(price),
+      price: updatedPrice,
       description,
-      image
+      image,
     });
+
     navigate(`/products/${product.id}`);
   };
 
@@ -66,11 +78,9 @@ const EditProduct = ({ products, onUpdateProduct }) => {
             onChange={(e) => setImage(e.target.value)}
           />
         </div>
+        <div>{/* Child 5 container space */}</div>
         <div>
-          {/* Empty spacer div to align button as child 3 */}
-        </div>
-        <div>
-          {/* Third container child to match selector :nth-child(3) > .float-right */}
+          {/* Matches target selector: :nth-child(3) > .float-right */}
           <button type="submit" className="float-right btn">
             Save
           </button>
