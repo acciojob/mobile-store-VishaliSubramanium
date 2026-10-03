@@ -27,7 +27,15 @@ const App = () => {
   const updateProduct = (updatedProduct) => {
     setProducts((prevProducts) =>
       prevProducts.map((p) =>
-        String(p.id) === String(updatedProduct.id) ? { ...p, ...updatedProduct } : p
+        String(p.id) === String(updatedProduct.id)
+          ? {
+              ...p,
+              ...updatedProduct,
+              price: typeof updatedProduct.price === "number"
+                ? updatedProduct.price
+                : parseFloat(updatedProduct.price)
+            }
+          : p
       )
     );
   };
