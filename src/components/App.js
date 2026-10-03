@@ -25,13 +25,15 @@ const App = () => {
   };
 
   const updateProduct = (updatedProduct) => {
-    setProducts((prev) =>
-      prev.map((p) => (p.id === updatedProduct.id ? updatedProduct : p))
+    setProducts((prevProducts) =>
+      prevProducts.map((p) =>
+        String(p.id) === String(updatedProduct.id) ? { ...p, ...updatedProduct } : p
+      )
     );
   };
 
   const deleteProduct = (id) => {
-    setProducts((prev) => prev.filter((p) => p.id !== id));
+    setProducts((prev) => prev.filter((p) => String(p.id) !== String(id)));
   };
 
   return (
