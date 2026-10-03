@@ -76,7 +76,7 @@ const AdminPanel = ({ products = [], onAddProduct, onDeleteProduct }) => {
         </form>
       </div>
 
-      {/* Dynamic Product Count */}
+      {/* Product Inventory */}
       <h3>Product Inventory ({products.length})</h3>
       <ul className="admin-product-list">
         {products.map((product) => (
