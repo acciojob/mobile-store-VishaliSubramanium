@@ -76,9 +76,8 @@ const EditProduct = ({ products, onUpdateProduct }) => {
             onChange={(e) => setImage(e.target.value)}
           />
         </div>
-        <div>{/* Child placeholder */}</div>
+        <div>{/* Structural container spacer for form child selectors */}</div>
         <div>
-          {/* Form action matches :nth-child(3) > .float-right */}
           <button type="submit" className="float-right btn">
             Save
           </button>
