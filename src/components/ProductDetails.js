@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router-dom";
 
 const ProductDetails = ({ products }) => {
   const { id } = useParams();
-  const product = products.find((p) => p.id === id);
+  const product = products.find((p) => String(p.id) === String(id));
 
   if (!product) {
     return (
