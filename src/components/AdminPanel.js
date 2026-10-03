@@ -12,7 +12,7 @@ const AdminPanel = ({ products = [], onAddProduct, onDeleteProduct }) => {
     if (name && price && description && image) {
       onAddProduct({
         name,
-        price: typeof price === "number" ? price : parseFloat(price),
+        price: parseFloat(price),
         description,
         image
       });
@@ -76,7 +76,7 @@ const AdminPanel = ({ products = [], onAddProduct, onDeleteProduct }) => {
         </form>
       </div>
 
-      {/* Product Inventory */}
+      {/* Product List & Dynamic Counter */}
       <h3>Product Inventory ({products.length})</h3>
       <ul className="admin-product-list">
         {products.map((product) => (
