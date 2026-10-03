@@ -20,10 +20,19 @@ const initialProducts = [
 const App = () => {
   const [products, setProducts] = useState(initialProducts);
 
+  // Add Product
   const addProduct = (newProduct) => {
-    setProducts((prev) => [...prev, { ...newProduct, id: Date.now().toString() }]);
+    setProducts((prev) => [
+      ...prev,
+      {
+        ...newProduct,
+        id: Date.now().toString(),
+        price: Number(newProduct.price)
+      }
+    ]);
   };
 
+  // Edit Product
   const updateProduct = (updatedProduct) => {
     setProducts((prevProducts) =>
       prevProducts.map((p) =>
@@ -31,17 +40,18 @@ const App = () => {
           ? {
               ...p,
               ...updatedProduct,
-              price: typeof updatedProduct.price === "number"
-                ? updatedProduct.price
-                : parseFloat(updatedProduct.price)
+              price: Number(updatedProduct.price)
             }
           : p
       )
     );
   };
 
+  // Delete Product
   const deleteProduct = (id) => {
-    setProducts((prev) => prev.filter((p) => String(p.id) !== String(id)));
+    setProducts((prevProducts) =>
+      prevProducts.filter((p) => String(p.id) !== String(id))
+    );
   };
 
   return (
