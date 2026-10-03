@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-const AdminPanel = ({ products, onAddProduct, onDeleteProduct }) => {
+const AdminPanel = ({ products = [], onAddProduct, onDeleteProduct }) => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
@@ -12,7 +12,7 @@ const AdminPanel = ({ products, onAddProduct, onDeleteProduct }) => {
     if (name && price && description && image) {
       onAddProduct({
         name,
-        price: parseFloat(price),
+        price: typeof price === "number" ? price : parseFloat(price),
         description,
         image
       });
@@ -76,7 +76,7 @@ const AdminPanel = ({ products, onAddProduct, onDeleteProduct }) => {
         </form>
       </div>
 
-      {/* Admin Products List */}
+      {/* Dynamic Product Count */}
       <h3>Product Inventory ({products.length})</h3>
       <ul className="admin-product-list">
         {products.map((product) => (
