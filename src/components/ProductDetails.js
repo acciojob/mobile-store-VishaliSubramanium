@@ -10,7 +10,7 @@ const ProductDetails = ({ products }) => {
       <div className="container">
         <h2>Product not found</h2>
         <Link to="/" className="btn">
-          Back to Home
+          Back
         </Link>
       </div>
     );
