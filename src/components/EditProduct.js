@@ -26,14 +26,12 @@ const EditProduct = ({ products, onUpdateProduct }) => {
 
   const handleSave = (e) => {
     e.preventDefault();
-    const updatedPrice = typeof price === "number" ? price : parseFloat(price);
-
     onUpdateProduct({
       id: product.id,
       name,
-      price: updatedPrice,
+      price: parseFloat(price),
       description,
-      image,
+      image
     });
 
     navigate(`/products/${product.id}`);
@@ -78,9 +76,9 @@ const EditProduct = ({ products, onUpdateProduct }) => {
             onChange={(e) => setImage(e.target.value)}
           />
         </div>
-        <div>{/* Child container spacer */}</div>
+        <div>{/* Child placeholder */}</div>
         <div>
-          {/* Matches target selector: :nth-child(3) > .float-right */}
+          {/* Form action matches :nth-child(3) > .float-right */}
           <button type="submit" className="float-right btn">
             Save
           </button>
